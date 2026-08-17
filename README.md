@@ -1,9 +1,9 @@
 # SafeCart Deployment
 
-Primary source-code and reproducibility entry point for SafeCart, an evidence-grounded
-marketplace listing identity assessment system for COMPFEST 18 AIC.
+Primary setup and source-code entry point for SafeCart, a marketplace product identity
+matching system for COMPFEST 18 AIC.
 
-SafeCart compares information visible in a listing with versioned BPOM evidence. It
+SafeCart compares information visible in a listing with a versioned BPOM record. It
 does **not** determine physical authenticity, chemical safety, or legal liability.
 
 ## Repository map
@@ -14,7 +14,7 @@ does **not** determine physical authenticity, chemical safety, or legal liabilit
 | [SafeCart-API](https://github.com/SafeCart-Compfest/SafeCart-API) | Public API and orchestration | Yes |
 | [SafeCart-AI](https://github.com/SafeCart-Compfest/SafeCart-AI) | OCR, retrieval, matching, training, and private inference | Yes |
 | [SafeCart-ScrapingData](https://github.com/SafeCart-Compfest/SafeCart-ScrapingData) | Offline source acquisition | No |
-| `SafeCart-Deployment` | Pinned integration, setup guide, and submission evidence | Orchestrator |
+| `SafeCart-Deployment` | Pinned integration, setup guide, and verification files | Orchestrator |
 
 API and AI source trees are Git submodules pinned to reviewed commits. They are not
 floating copies of `main`.
@@ -27,7 +27,7 @@ The initial composition validates the API-to-AI service boundary:
 client -> SafeCart-API :8000 -> SafeCart-AI :8001 (private network)
 ```
 
-The PWA is intentionally excluded until the AI acceptance gate passes. The current
+The PWA is intentionally excluded until the AI required checks pass. The current
 bootstrap provides health and readiness checks; it is not yet the final assessment MVP.
 
 ## Prerequisites
@@ -35,7 +35,7 @@ bootstrap provides health and readiness checks; it is not yet the final assessme
 - Git 2.40 or newer.
 - Docker Engine 24+ with Compose v2.
 - At least 4 GB free memory for the bootstrap services. Final model requirements will
-  be documented after the CPU artifact is frozen.
+  be documented after the CPU model file is finalized.
 
 ## Setup
 
@@ -75,7 +75,7 @@ datasets, or model output.
 - Record the service PR and evaluation impact in the deployment PR.
 - Never point Compose at an unpinned branch or run scraping during evaluation.
 - Keep raw datasets, private screenshots, credentials, and model weights outside Git.
-- Freeze the submission with an immutable `preliminary-2026` tag only after the clean
+- Mark the final submission with an immutable `preliminary-2026` tag only after the clean
   clone checklist passes.
 
 See `docs/SERVICE_OWNERSHIP.md` and `docs/SUBMISSION_CHECKLIST.md` for the integration

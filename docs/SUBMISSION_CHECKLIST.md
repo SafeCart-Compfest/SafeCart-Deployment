@@ -9,24 +9,24 @@ Do not create the final tag until every applicable item is complete.
 - [ ] Submodules point to reviewed commits and initialize from a clean clone.
 - [ ] No pending changes exist in any submitted repository.
 
-## AI evidence
+## AI evaluation
 
-- [ ] Frozen test set was not used for model or threshold selection.
+- [ ] Final test set was not used for model or threshold selection.
 - [ ] Baselines and fine-tuned model use the same split and evaluation contract.
-- [ ] Acceptance metrics include bootstrap confidence intervals and error analysis.
+- [ ] Required metrics include bootstrap confidence intervals and error analysis.
 - [ ] Data manifest, model card, artifact version, and SHA-256 are published.
-- [ ] Ambiguous and low-evidence cases abstain.
+- [ ] Missing-input and ambiguous cases return `INSUFFICIENT_EVIDENCE`.
 
 ## Runtime
 
 - [ ] `docker compose up --build` succeeds on a clean machine.
-- [ ] Health, readiness, upload validation, and golden assessment cases pass.
+- [ ] Health, readiness, upload validation, and assessment scenario tests pass.
 - [ ] Uploaded screenshots are processed in memory and are not persisted.
 - [ ] CPU p95 latency is measured on documented hardware.
 
 ## Submission
 
-- [ ] Proposal claims match measured evidence and include the non-claim disclaimer.
+- [ ] Proposal claims match measured results and include the non-claim disclaimer.
 - [ ] Demo and promotional assets contain no prohibited institution branding.
 - [ ] The immutable `preliminary-2026` tag points to the audited deployment commit.
 - [ ] Submission is completed before the deadline buffer.
