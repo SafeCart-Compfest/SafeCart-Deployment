@@ -1,0 +1,6 @@
+[submodule "services/api"]
+	path = services/api
+	url = https://github.com/SafeCart-Compfest/SafeCart-API.git
+[submodule "services/ai"]
+	path = services/ai
+	url = https://github.com/SafeCart-Compfest/SafeCart-AI.git
