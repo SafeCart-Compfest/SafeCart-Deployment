@@ -1,0 +1,47 @@
+name: safecart
+
+services:
+  ai:
+    build:
+      context: ./services/ai
+    environment:
+      SAFECART_AI_ENV: production
+      SAFECART_AI_LOG_LEVEL: INFO
+    expose:
+      - "8001"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://localhost:8001/health', timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./services/api
+    environment:
+      SAFECART_API_ENV: production
+      SAFECART_API_AI_BASE_URL: http://ai:8001
+      SAFECART_API_AI_TIMEOUT_SECONDS: 2
+      SAFECART_API_LOG_LEVEL: INFO
+    depends_on:
+      ai:
+        condition: service_healthy
+    ports:
+      - "${SAFECART_API_PORT:-8000}:8000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://localhost:8000/ready', timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
